@@ -5,3 +5,23 @@
 	margin-right: auto;
 	border: 2px solid black;
 }
+
+.game-interface > h1 {
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+.game-interface > .pic {
+	min-height:100px;
+	width: 100px;
+	margin-left: 30%;
+	margin-right: 30%;
+	background-color: #b6b6b6;
+	margin-top: 20%;
+}
+
+.game-interface > .row{
+	margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 60px;
+}
