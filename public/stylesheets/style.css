@@ -1,27 +1,85 @@
+body {
+	padding-top: 65px;  /*for Bootstrap fixed top nav bar*/
+}
+
 .game-interface {
 	min-height: 400px;
 	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 }
 
 .game-interface > h1 {
-	margin-left: 30%;
-	margin-right: 30%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .game-interface > .pic {
 	min-height:100px;
 	width: 100px;
-	margin-left: 30%;
-	margin-right: 30%;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: #b6b6b6;
 	margin-top: 20%;
 }
 
 .game-interface > .row{
-	margin-left: 25%;
-	margin-right: 25%;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 60px;
+}
+
+.btn.btn-primary {
+	background-color: #4856b6;
+	margin-bottom: 10px;
+}
+
+.navbar-default {
+border-color: #000;
+background-color:#242222;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+    .navbar-default .navbar-nav > li > a:hover {
+        color: #fff;
+    }
+  
+.navbar-nav > li > a {
+    margin: 5px 0px 5px 0px;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color:#159238;
+}
+.navbar-default .navbar-toggle {
+    border:2px solid #159238;
+}
+.navbar-default .navbar-toggle .icon-bar {
+background-color: #fff;
+}
+
+.navbar-default a.navbar-brand {
+color: #9daaff;
+}
+
+.navbar-default a.navbar-brand {
+color: #a7c0ff;
+}
+
+.navbar-default a.navbar-brand:hover {
+color: #9daaff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  margin-left: auto;
+  margin-right: auto;
 }
