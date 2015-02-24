@@ -11,7 +11,7 @@ app.controller("MainController", function ($scope, UserFactory){
 app.factory("UserFactory", function ($http){
 	return{
 		getUser: function(){
-			return $http.get("https://slack.com/api/users.info?token=xoxp-2151814398-3389333122-3827854636-2f9e23&user=U03BF9T3L&pretty=1").then(function (response) {
+			return $http.get("").then(function (response) {
                 console.log("first");
                 console.log(response);
                 return response.data;
