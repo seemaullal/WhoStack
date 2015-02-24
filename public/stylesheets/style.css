@@ -21,13 +21,13 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #b6b6b6;
-	margin-top: 20%;
+	margin-top: 10%;
 }
 
 .game-interface > .row{
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 60px;
+	margin-top: 20%;
 }
 
 .btn.btn-primary {
@@ -47,27 +47,34 @@ background-color:#242222;
         color: #fff;
     }
   
-.navbar-nav > li > a {
+/*.navbar-nav > li > a {
     margin: 5px 0px 5px 0px;
-}
+}*/
 
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color:#159238;
-}
 .navbar-default .navbar-toggle {
-    border:2px solid #159238;
+    border:2px solid #4856b6;
+    vertical-align: middle;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color:#4856b6;
 }
 .navbar-default .navbar-toggle .icon-bar {
 background-color: #fff;
 }
 
-.navbar-default a.navbar-brand {
-color: #9daaff;
+.navbar-default .navbar-toggle:hover .icon-bar {
+background-color: #fff;
 }
 
 .navbar-default a.navbar-brand {
-color: #a7c0ff;
+	vertical-align: middle;
+	color: #a7c0ff;
 }
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: #9daaff;
+}
+
 
 .navbar-default a.navbar-brand:hover {
 color: #9daaff;
