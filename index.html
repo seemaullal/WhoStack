@@ -5,6 +5,7 @@
 		<script src="angular/angular.min.js"></script>
 		<link rel='stylesheet' href="bootstrap/dist/css/bootstrap.css">
 		<link rel='stylesheet' href="stylesheets/style.css">
+		<script src="js/app.js"></script>
 	</head>
 	<body >
 		<div class="navbar navbar-default navbar-fixed-top move-me ">
@@ -19,7 +20,7 @@
 				</div>
 				<div class="navbar-collapse collapse move-me">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="http://www.slack.com">Slack</a></li>
+						<li><a href="http://www.slack.com" target="_blank" >Slack</a></li>
 					</ul>
 				</div>
 			</div>
@@ -43,6 +44,7 @@
 		</div>
 		<script src="jquery/dist/jquery.min.js"></script>
 		<script src="bootstrap/dist/js/bootstrap.js"></script>
-		<footer class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a></div></footer>
+		<div ng-app="WhoStack" ng-controller="MainController">{{ user }}</div>
+		<footer class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a target="_blank" href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com" target="_blank" >Seemaisms.</a></div></footer>
 	</body>
 </html>
