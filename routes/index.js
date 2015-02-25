@@ -4,13 +4,19 @@ var passport = require("passport");
 var config = require("../config");
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	console.log('req',req);
-		res.sendFile('./index.html', {root: './'});
+	
+
+	res.sendFile('./index.html', {root: './'});
+});
+router.get('/game', function(req, res, next) {
+	console.log('req.query.code',req.query.code);
+
+	res.sendFile('./game.html', {root: './'});
 });
 
 router.get('/login' , function(req, res, next) {
 	req.client_id = config.slackSecrets.clientID;
-	req.redirect_uri = 'http://127.0.0.1:3000/';
+	req.redirect_uri = 'http://127.0.0.1:3000/game';
 	req.state = config.slackSecrets.state;
 	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.clientID + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
 });
