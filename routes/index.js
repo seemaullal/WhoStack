@@ -4,13 +4,11 @@ var passport = require("passport");
 var config = require("../config");
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	
-
 	res.sendFile('./index.html', {root: './'});
 });
 router.get('/game', function(req, res, next) {
 	console.log('req.query.code',req.query.code);
-
+	
 	res.sendFile('./game.html', {root: './'});
 });
 

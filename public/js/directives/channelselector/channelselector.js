@@ -3,5 +3,4 @@ app.directive("ChannelSelector", function(){
 		restrict: 'E',
 		templateUrl: 'js/directives/channelselector.html'
 	}
-
 }
