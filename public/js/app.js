@@ -1,8 +1,16 @@
 var app = angular.module("WhoStack", []);
 
-app.controller("MainController", function ($scope){
-	// console.log($location.search());
-	// TokenFactory.getToken(client_id, client_secret, code, state);
+app.controller("MainController", function ($scope, GroupFactory){
+	GroupFactory.getGroups().then(function(groups){
+		$scope.groups = groups.groups
+		console.log("our groups on the scope are", groups)
+	})
+	$scope.somefunction = function(option){
+		console.log($scope.selectedgroup)
+		console.log("click event occured")
+		console.log("option",option)
+	}
+	
 });
 
 	// UserFactory.getUser().then(function(user){

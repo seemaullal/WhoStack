@@ -3,11 +3,12 @@
 	<head>
 		<title>WhoStack</title>
 		<script src="angular/angular.min.js"></script>
-		
 		<link rel='stylesheet' href="bootstrap/dist/css/bootstrap.css">
 		<link rel='stylesheet' href="stylesheets/style.css">
 		<script src="js/app.js"></script>
-		<script src="js/factories/TokenFactory.js"></script>
+		<script src ="js/directives/groupselector/groupselector.js"></script>
+		<script src ="js/directives/gameinterface/gameinterface.js"></script>
+		<script src="js/factories/GroupFactory.js"></script>
 	</head>
 	<body ng-app="WhoStack" ng-controller="MainController" >
 		<div class="navbar navbar-default navbar-fixed-top move-me ">
@@ -27,24 +28,8 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class='container'>
-			<div class='game-interface text-center'>
-				<h1>Who is this?</h1>
-				<div class='pic'></div>
-				<div class='row'>
-					<div class='col-md-4'>
-						<button class="btn btn-primary" type="submit">Option 1</button>
-					</div>
-					<div class='col-md-4'>
-						<button class="btn btn-primary" type="submit">Option 2</button>
-					</div>
-					<div class='col-md-4'>
-						<button class="btn btn-primary" type="submit">Option 3</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<groupselector></groupselector>
+		<gameinterface></gameinterface>
 		<script src="jquery/dist/jquery.min.js"></script>
 		<script src="bootstrap/dist/js/bootstrap.js"></script>
 		<footer class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a></div></footer>
