@@ -18,10 +18,8 @@ router.get('/game', function(req, res, next) {
 		if (!error && response.statusCode == 200) {
 			var body = JSON.parse(body);
 			token = body.access_token;
-			console.log("token", token);
 			request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
-					console.log("body part 2",body);
 					body = JSON.parse(body);
 					var user_id = body.user_id;
 					models.User.findOne({UserId: user_id}, function(err, user){
@@ -29,6 +27,7 @@ router.get('/game', function(req, res, next) {
 						// find an existing user from the database
 						else if (user) {
 							console.log(user);
+							//UPDATE DATABASE !?
 						}
 						else {
 							models.User.create({ UserId: user_id, Token: token});
@@ -49,7 +48,6 @@ router.get("/groups", function(req, res, next){
 	qs = {token: token}
 	request({url: url, qs: qs }, function (error, response, body) {
 		body = JSON.parse(body);
-		console.log(body)
 		res.send(body)
 	})
 })
@@ -57,14 +55,20 @@ router.get('/login' , function(req, res, next) {
 	req.redirect_uri = 'http://127.0.0.1:3000/game';
 	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.client_id + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
 });
-// router.get('/auth/slack',passport.authenticate('slack'));
 
-// router.get('/auth/slack/callback', 
-//   passport.authenticate('slack', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect('/');
-//   });
+router.get('/user/:id', function(req, res, next) {
+	var userId = req.params.id;
+	url = "https://slack.com/api/users.info" 
+	qs = {
+		token: token,
+		user: userId
+	};
+	request({url: url, qs: qs }, function (error, response, body) {
+		body = JSON.parse(body);
+		res.send(body)
+	});
+});
+
 
 module.exports = router;
 

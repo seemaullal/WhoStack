@@ -1,14 +1,17 @@
 var app = angular.module("WhoStack", []);
 
-app.controller("MainController", function ($scope, GroupFactory){
+app.controller("MainController", function ($scope, GroupFactory,MemberFactory){
 	GroupFactory.getGroups().then(function(groups){
 		$scope.groups = groups.groups
 		console.log("our groups on the scope are", groups)
 	})
-	$scope.somefunction = function(option){
-		console.log($scope.selectedgroup)
-		console.log("click event occured")
-		console.log("option",option)
+	$scope.members = [ ];
+	$scope.getMembers = function(groupSelected){
+		groupSelected.members.forEach(function(member) {
+			MemberFactory.getUserInformation(member).then(function(member) {
+				$scope.members.push(member);
+			})
+		});
 	}
 	
 });
