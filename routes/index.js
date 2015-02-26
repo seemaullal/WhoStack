@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require("../config");
 var request = require('request');
+var models = require("../models/index");
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.sendFile('./index.html', {root: './'});
@@ -13,17 +14,27 @@ router.get('/game', function(req, res, next) {
 	qs.code = req.query.code;
 	qs.redirect_uri = 'http://127.0.0.1:3000/game';
 	request({url: url, qs: qs }, function (error, response, body) {
-	  if (!error && response.statusCode == 200) {
-	  	var body = JSON.parse(body)
-	    var token = body.access_token;
-	    console.log("token", token);
-	    request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
-	  		if (!error && response.statusCode == 200) {
-	  			console.log("body part 2",body);
-	  		}
-	  	})
-	  }
-	})
+		if (!error && response.statusCode == 200) {
+			var body = JSON.parse(body);
+			var token = body.access_token;
+			console.log("token", token);
+			request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
+				if (!error && response.statusCode == 200) {
+					console.log("body part 2",body);
+					body = JSON.parse(body);
+					var user_id = body.user_id;
+					models.User.fundONe({UserId: user_id}, function(err, user){
+						if (err) console.log(err);
+						// find an existing user from the database
+						else if (user) console.log(user);
+						else {
+							models.User.create({ UserId: user_id, Token: token});
+						}
+					});
+				}
+			});
+		}
+	});
 	res.sendFile('./game.html', {root: './'});
 });
 
