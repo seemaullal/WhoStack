@@ -3,11 +3,11 @@ var app = angular.module("WhoStack", []);
 app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 	GroupFactory.getGroups().then(function(groups){
 		$scope.groups = groups.groups
-		console.log("our groups on the scope are", groups)
 	})
 	$scope.membersphotolinks = [ ];
 	$scope.members = [];
 	$scope.getMembers = function(groupSelected){
+		$scope.name = null;
 		$scope.membersphotolinks = [ ];
 		$scope.members = [];
 		groupSelected.members.forEach(function(member) {
