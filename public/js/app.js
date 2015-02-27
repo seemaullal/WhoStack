@@ -5,8 +5,9 @@ app.controller("MainController", function ($scope, GroupFactory,MemberFactory){
 		$scope.groups = groups.groups
 		console.log("our groups on the scope are", groups)
 	})
-	$scope.members = [ ];
+	
 	$scope.getMembers = function(groupSelected){
+		$scope.members = [ ];
 		groupSelected.members.forEach(function(member) {
 			MemberFactory.getUserInformation(member).then(function(member) {
 				$scope.members.push(member);
