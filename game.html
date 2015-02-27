@@ -13,6 +13,7 @@
 		<script src="js/factories/MemberFactory.js"></script>
 		<script src="js/filters/realphoto.js"></script>
 	</head>
+	<div id="container">
 	<body ng-app="WhoStack" ng-controller="MainController" >
 		<div class="navbar navbar-default navbar-fixed-top move-me ">
 			<div class="container">
@@ -31,12 +32,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="body">
 		<groupselector></groupselector>
 		<whogame></whogame>
 		<h1 class="container text-center" ng-show="name">You clicked on {{name}} .</h1>
 		<!-- <gameinterface></gameinterface> -->
 		<script src="jquery/dist/jquery.min.js"></script>
 		<script src="bootstrap/dist/js/bootstrap.js"></script>
-		<footer class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a></div></footer>
+	</div>
 	</body>
+	<div id="footer" class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a></div></div>
+	</div>
 </html>
