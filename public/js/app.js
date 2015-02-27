@@ -1,18 +1,23 @@
 var app = angular.module("WhoStack", []);
 
-app.controller("MainController", function ($scope, GroupFactory,MemberFactory){
+app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 	GroupFactory.getGroups().then(function(groups){
 		$scope.groups = groups.groups
 		console.log("our groups on the scope are", groups)
 	})
-	
+	$scope.membersphotolinks = [ ];
+	$scope.members = [];
 	$scope.getMembers = function(groupSelected){
-		$scope.members = [ ];
+		$scope.membersphotolinks = [ ];
+		$scope.members = [];
 		groupSelected.members.forEach(function(member) {
 			MemberFactory.getUserInformation(member).then(function(member) {
-				$scope.members.push(member);
+				$scope.members.push(member)
+				$scope.membersphotolinks.push(member.user.profile.image_72);
+
 			})
 		});
+
 	}
 
 	
