@@ -19,6 +19,10 @@ app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 		});
 
 	}
+	$scope.photoClicked = function(member) {
+		console.log(member);
+		$scope.name = member.real_name;
+	}
 
 	
 });

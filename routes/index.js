@@ -36,7 +36,7 @@ router.get('/game', function(req, res, next) {
 				}
 			});
 		}
-	});
+	}); 
 	res.sendFile('./game.html', {root: './'});
 });
 

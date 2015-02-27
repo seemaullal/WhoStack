@@ -1,3 +1,7 @@
 <div class="container">
-	<img ng-repeat="link in membersphotolinks | realphoto " ng-src="{{ link }}"/>
+	<img 
+	ng-repeat="member in members" 
+	ng-src="{{ member.user.profile.image_72 }}"
+	ng-click = "photoClicked(member.user.profile)"
+	/> <!-- NO FILTER FOR NOW -->
 </div>
