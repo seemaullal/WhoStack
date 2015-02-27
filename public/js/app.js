@@ -13,6 +13,7 @@ app.controller("MainController", function ($scope, GroupFactory,MemberFactory){
 			})
 		});
 	}
+
 	
 });
 
