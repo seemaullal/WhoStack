@@ -17,7 +17,8 @@ router.get('/game', function(req, res, next) {
 	var url = 'https://slack.com/api/oauth.access';
 	var qs = config.slackSecrets;
 	qs.code = req.query.code;
-	qs.redirect_uri = 'https://whostack.herokuapp.com/game';
+	// qs.redirect_uri = 'https://whostack.herokuapp.com/game';
+	qs.redirect_uri = 'http://127.0.0.1:3000/game';
 	request({url: url, qs: qs }, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var body = JSON.parse(body);
@@ -58,7 +59,8 @@ router.get("/groups", function(req, res, next){
 	})
 })
 router.get('/login' , function(req, res, next) {
-	req.redirect_uri = 'https://whostack.herokuapp.com/game';
+	req.redirect_uri = 'http://127.0.0.1:3000/game'
+	// req.redirect_uri = 'https://whostack.herokuapp.com/game';
 	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.client_id + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
 });
 
