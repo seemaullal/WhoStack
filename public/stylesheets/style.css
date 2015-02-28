@@ -1,6 +1,10 @@
 html,body {
     height:100%;
 }
+
+body {
+  padding-top: 65px; /*for bootstrap navbar top*/
+}
  
 #wrap {
   min-height: 100%;  
