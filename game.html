@@ -13,37 +13,28 @@
 		<script src="js/factories/MemberFactory.js"></script>
 		<script src="js/filters/realphoto.js"></script>
 	</head>
-	<body ng-app="WhoStack" ng-controller="MainController" >
-		<div class="navbar navbar-default navbar-fixed-top move-me ">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/">WhoStack</a>
-				</div>
-				<div class="navbar-collapse collapse move-me">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/login">Log In</a></li>
-					</ul>
+	<body>
+		<div id="wrap">
+			<div id="main" class="container clear-top">
+				<div class="row">
+					<div class="span12">
+						<groupselector></groupselector>
+						<br/><br/>
+						<h1 class="container text-center" ng-show="name">You clicked on {{name}} .</h1>
+						<br/><br/>
+						<whogame></whogame>
+						<!-- <gameinterface></gameinterface> -->
+					</div>
+					<script src="jquery/dist/jquery.min.js"></script>
+					<script src="bootstrap/dist/js/bootstrap.js"></script>
 				</div>
 			</div>
 		</div>
-		<div id="container">
-		<div id="body">
-		<groupselector></groupselector>
-		<br/><br/>
-		<h1 class="container text-center" ng-show="name">You clicked on {{name}} .</h1>
-		<br/><br/>
-		<whogame></whogame>
-		<!-- <gameinterface></gameinterface> -->
-		</div>
-		<script src="jquery/dist/jquery.min.js"></script>
-		<script src="bootstrap/dist/js/bootstrap.js"></script>
-	</div>
 	</body>
-	<footer id="footer" class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a></div></footer>
-	</div>
-</html>
+	<footer class="footer" style="background-color:#c2c2c2;">
+		<div class="container" style="margin:0 auto;">
+			<div class="row">
+				Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a>
+			</div>
+		</div>
+	</footer>
