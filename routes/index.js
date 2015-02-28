@@ -5,6 +5,7 @@ var request = require('request');
 var models = require("../models/index");
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	console.log('token',req.session.token);
 	res.sendFile('./index.html', {root: './'});
 });
 var token;
