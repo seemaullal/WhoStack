@@ -23,6 +23,7 @@ router.get('/game', function(req, res, next) {
 			var body = JSON.parse(body);
 			token = body.access_token;
 			sesh.token = token;
+			sesh.save();
 			request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					body = JSON.parse(body);

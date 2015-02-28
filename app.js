@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
     secret: 'trumpets',
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: true
 
 }));
