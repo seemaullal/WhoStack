@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
     secret: 'trumpets',
+    saveUninitialized: false,
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
