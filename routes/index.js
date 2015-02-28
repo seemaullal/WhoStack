@@ -3,8 +3,10 @@ var router = express.Router();
 var config = require("../config");
 var request = require('request');
 var models = require("../models/index");
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	console.log('session', session);
 	console.log('token',req.session.token);
 	res.sendFile('./index.html', {root: './'});
 });
