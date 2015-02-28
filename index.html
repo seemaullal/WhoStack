@@ -5,8 +5,15 @@
 		<script src="angular/angular.min.js"></script>
 		<link rel='stylesheet' href="bootstrap/dist/css/bootstrap.css">
 		<link rel='stylesheet' href="stylesheets/style.css">
+		<script src="js/app.js"></script>
+		<script src ="js/directives/groupselector/groupselector.js"></script>
+		<script src ="js/directives/gameinterface/gameinterface.js"></script>
+		<script src ="js/directives/whogame/whogame.js"></script>
+		<script src="js/factories/GroupFactory.js"></script>
+		<script src="js/factories/MemberFactory.js"></script>
+		<script src="js/filters/realphoto.js"></script>
 	</head>
-	<body >
+	<body>
 		<div class="navbar navbar-default navbar-fixed-top move-me ">
 			<div class="container">
 				<div class="navbar-header">
@@ -24,14 +31,24 @@
 				</div>
 			</div>
 		</div>
-		<div class='jumbotron'>
-			<div class='container'>
-				<h3>Welcome to WhoStack!<h3>
-				<a href="/login"><h2>Sign in through Slack :) </h2></a>
+		<div id="wrap">
+			<div id="main" class="container clear-top">
+				<div class="row">
+					<div class="span12">
+						<div class='jumbotron'>
+							<h3>Welcome to WhoStack!<h3>
+							<a href="/login"><h2>Sign in through Slack :) </h2></a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<script src="jquery/dist/jquery.min.js"></script>
-		<script src="bootstrap/dist/js/bootstrap.js"></script>
-		<footer class="footer text-center"><div class="container">Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a></div></footer>
 	</body>
+	<footer class="footer" style="background-color:#c2c2c2;">
+		<div class="container" style="margin:0 auto;">
+			<div class="row">
+				Created by Sarah Muenzinger and Seema Ullal in February 2015. Read more at <a href="http://www.munzicodes.com">Munzi Codes</a> and <a href="http://www.seemaisms.tumblr.com">Seemaisms.</a>
+			</div>
+		</div>
+	</footer>
 </html>
