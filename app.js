@@ -25,6 +25,8 @@ app.use(cookieParser());
 app.use(session({
     secret: 'trumpets',
     saveUninitialized: false,
+    resave: true
+
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
