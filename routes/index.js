@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 var token;
 router.get('/game', function(req, res, next) {
-
+	if (req.session.token) console.log('already had token',req.session.token)
 	var url = 'https://slack.com/api/oauth.access';
 	var qs = config.slackSecrets;
 	qs.code = req.query.code;
@@ -18,8 +18,7 @@ router.get('/game', function(req, res, next) {
 		if (!error && response.statusCode == 200) {
 			var body = JSON.parse(body);
 			token = body.access_token;
-			if (req.session.token) console.log('already had token',req.session.token)
-			else req.session.token = token;
+			req.session.token = token;
 			request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					body = JSON.parse(body);
