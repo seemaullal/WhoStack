@@ -21,7 +21,7 @@ We plan to add more features to WhoStack soon and also hopefully add integration
 
 ------------
 
-WhoStack was created by Sarah Muenzinger (www.munzicodes.com) and Seema Ullal (seemaisms.tumblr.com). 
+WhoStack was created by Sarah Muenzinger and Seema Ullal in 2015. 
 
 
 
