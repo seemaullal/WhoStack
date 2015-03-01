@@ -8,33 +8,45 @@ var models = require("../models/index");
 router.get('/', function(req, res, next) {
 	console.log('session', req.session);
 	console.log('token',req.session.token);
-	res.sendFile('./index.html', {root: './'});
+	if (req.session.token)
+		res.redirect('/game')
+	else
+		res.sendFile('./index.html', {root: './'});
 });
+
 var token;
 router.get('/game', function(req, res, next) {
-	if (req.session.token) console.log('already had token',req.session.token)
+	if (req.session.token) {
+		console.log('already had token',req.session.token);
+		res.sendFile('./game.html', {root: './'});
+	}
+	else res.redirect('/login')
+});
+
+router.get('/auth' , function(req,res,next) {
 	var sesh = req.session;
 	var url = 'https://slack.com/api/oauth.access';
 	var qs = config.slackSecrets;
 	qs.code = req.query.code;
-	// qs.redirect_uri = 'https://whostack.herokuapp.com/game';
-	qs.redirect_uri = 'http://127.0.0.1:3000/game';
+	qs.redirect_uri = 'http://127.0.0.1:3000/auth';
 	request({url: url, qs: qs }, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var body = JSON.parse(body);
-			token = body.access_token;
+			var token = body.access_token;
 			sesh.token = token;
 			sesh.save();
 			request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					body = JSON.parse(body);
 					var user_id = body.user_id;
+					sesh.user_id = user_id;
 					models.User.findOne({UserId: user_id}, function(err, user){
 						if (err) console.log(err);
 						// find an existing user from the database
 						else if (user) {
 							console.log(user);
-							//UPDATE DATABASE !?
+							user.Token = token;
+							user.save();
 						}
 						else {
 							models.User.create({ UserId: user_id, Token: token});
@@ -43,8 +55,16 @@ router.get('/game', function(req, res, next) {
 				}
 			});
 		}
-	}); 
-	res.sendFile('./game.html', {root: './'});
+	});
+	res.redirect('/game');
+
+});
+
+router.get('/login' , function(req, res, next) {
+	req.redirect_uri = 'http://127.0.0.1:3000/auth'
+	// req.redirect_uri = 'https://whostack.herokuapp.com/game';
+	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.client_id + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
+
 });
 
 router.get("/groups", function(req, res, next){
@@ -52,23 +72,18 @@ router.get("/groups", function(req, res, next){
 	//that will return an object that contains array of channel objects
 	//we will then send on our own page a 
 	url = "https://slack.com/api/groups.list" 
-	qs = {token: token}
+	qs = {token: req.session.token}
 	request({url: url, qs: qs }, function (error, response, body) {
 		body = JSON.parse(body);
 		res.send(body)
 	})
-})
-router.get('/login' , function(req, res, next) {
-	req.redirect_uri = 'http://127.0.0.1:3000/game'
-	// req.redirect_uri = 'https://whostack.herokuapp.com/game';
-	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.client_id + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
 });
 
 router.get('/user/:id', function(req, res, next) {
 	var userId = req.params.id;
 	url = "https://slack.com/api/users.info" 
 	qs = {
-		token: token,
+		token: req.session.token,
 		user: userId
 	};
 	request({url: url, qs: qs }, function (error, response, body) {
@@ -79,6 +94,99 @@ router.get('/user/:id', function(req, res, next) {
 
 
 module.exports = router;
+
+// /* GET home page. */
+// router.get('/', function(req, res, next) {
+// 	if (req.session.token) {
+// 		console.log('already had token',req.session.token);
+// 		res.redirect('/game');
+// 	} else {
+// 	console.log('session', req.session);
+// 	console.log('token',req.session.token);
+// 	res.sendFile('./index.html', {root: './'});	
+// 	}
+// });
+// //var token;
+
+// router.get('/game', function(req, res, next) {
+// 	if (req.session.token) {
+// 		console.log('already had token',req.session.token);
+// 		res.sendFile('./game.html', {root: './'});
+// 	}
+// 	//else res.redirect('/login')
+// });
+
+// router.get("/groups", function(req, res, next){
+// 	//make a call to slack's api for channels.list with token (how do we now find the right token from our model?)
+// 	//that will return an object that contains array of channel objects
+// 	//we will then send on our own page a 
+// 	url = "https://slack.com/api/groups.list" 
+// 	qs = {token: req.session.token}
+// 	request({url: url, qs: qs }, function (error, response, body) {
+// 		body = JSON.parse(body);
+// 		res.send(body)
+// 	})
+// });
+
+// router.get('/auth' , function(req,res,next) {
+// 	var sesh = req.session;
+// 	var url = 'https://slack.com/api/oauth.access';
+// 	var qs = config.slackSecrets;
+// 	qs.code = req.query.code;
+// 	//qs.redirect_uri = 'http://127.0.0.1:3000/game';
+// 	request({url: url, qs: qs }, function (error, response, body) {
+// 		if (!error && response.statusCode == 200) {
+// 			var body = JSON.parse(body);
+// 			var token = body.access_token;
+// 			sesh.token = token;
+// 			sesh.save();
+// 			request({url: "https://slack.com/api/auth.test", qs: {token: token} }, function (error, response, body) {
+// 				if (!error && response.statusCode == 200) {
+// 					body = JSON.parse(body);
+// 					var user_id = body.user_id;
+// 					sesh.user_id = user_id;
+// 					models.User.findOne({UserId: user_id}, function(err, user){
+// 						if (err) console.log(err);
+// 						// find an existing user from the database
+// 						else if (user) {
+// 							console.log(user);
+// 							user.Token = token;
+// 							user.save();
+// 						}
+// 						else {
+// 							models.User.create({ UserId: user_id, Token: token});
+// 						}
+// 					});
+// 				}
+// 			});
+// 		}
+// 	});
+// 	res.redirect('/game');
+
+// });
+
+// router.get('/login' , function(req, res, next) {
+// 	req.redirect_uri = 'http://127.0.0.1:3000/auth'
+// 	// req.redirect_uri = 'https://whostack.herokuapp.com/game';
+// 	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.client_id + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
+
+// });
+
+// router.get('/user/:id', function(req, res, next) {
+// 	var userId = req.params.id;
+// 	url = "https://slack.com/api/users.info" 
+// 	qs = {
+// 		token: req.session.token,
+// 		user: userId
+// 	};
+// 	request({url: url, qs: qs }, function (error, response, body) {
+// 		body = JSON.parse(body);
+// 		res.send(body)
+// 	});
+// });
+
+
+// module.exports = router;
 
 /*
 STEPS
