@@ -13,7 +13,7 @@ WhoStack was made using Express.js and Node.js on the backend and HTML, CSS, and
 
 Screenshots
 -----------
-![enter image description here](http://imgur.com/o8i0EFW)
+![enter image description here](http://i.imgur.com/o8i0EFW.png?1)
 
 Next Steps
 -----------
