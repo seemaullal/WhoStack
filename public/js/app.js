@@ -4,6 +4,7 @@ app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 	GroupFactory.getGroups().then(function(groups){
 		$scope.groups = groups.groups
 	})
+	$scope.selectedIndex = -1;
 	$scope.membersphotolinks = [ ];
 	$scope.members = [];
 	$scope.getMembers = function(groupSelected){
@@ -19,8 +20,9 @@ app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 		});
 
 	}
-	$scope.photoClicked = function(member) {
+	$scope.photoClicked = function(member, $index) {
 		console.log(member);
+		$scope.selectedIndex = $index;
 		$scope.name = member.real_name;
 	}
 
