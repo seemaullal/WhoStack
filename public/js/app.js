@@ -8,7 +8,8 @@ app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 	$scope.membersphotolinks = [ ];
 	$scope.members = [];
 	$scope.getMembers = function(groupSelected){
-		$scope.name = null;
+		$scope.name = null; //nobody is selected when you click on a new group
+		$scope.selectedIndex = -1; //nobody is selected when you click on a new group
 		$scope.membersphotolinks = [ ];
 		$scope.members = [];
 		groupSelected.members.forEach(function(member) {
