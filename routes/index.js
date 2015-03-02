@@ -40,6 +40,7 @@ router.get('/auth' , function(req,res,next) {
 					body = JSON.parse(body);
 					var user_id = body.user_id;
 					sesh.user_id = user_id;
+					sesh.save();
 					models.User.findOne({UserId: user_id}, function(err, user){
 						if (err) console.log(err);
 						// find an existing user from the database
@@ -92,6 +93,18 @@ router.get('/user/:id', function(req, res, next) {
 	});
 });
 
+
+router.get('/currentUser', function(req, res, next) {
+	url = "https://slack.com/api/users.info" 
+	qs = {
+		token: req.session.token,
+		user: req.session.user_id
+	};
+	request({url: url, qs: qs }, function (error, response, body) {
+		body = JSON.parse(body);
+		res.send(body)
+	});
+});
 
 module.exports = router;
 
