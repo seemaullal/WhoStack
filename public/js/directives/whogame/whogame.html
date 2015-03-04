@@ -1,4 +1,9 @@
 <div class="container">
+	<h3 ng-show="randomPerson">Who is {{randomPerson.user.profile.real_name}}?</h3>
+	<h1 class="container text-center" ng-show="name">{{message}}</h1>
+	<button ng-show="members" ng-click="pickPerson(members)">Test me!</button>
+	
+	<!-- <h3 ng-show="message">{{message}}</h3> -->
 	<img 
 	height="100" width="100"
 	ng-repeat="member in members"
