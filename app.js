@@ -4,6 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+if (process.env.REDISTOGO_URL) { //production
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    var redis = require("redis").createClient(rtg.port, rtg.hostname);
+
+    redis.auth(rtg.auth.split(":")[1]);
+} else { //development
+    var redis = require("redis").createClient();
+}
+var RedisStore = require('connect-redis')(session);
 
 
 var bodyParser = require('body-parser');
@@ -23,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
+    store: new RedisStore(),
     secret: 'trumpets',
     saveUninitialized: true,
     resave: true

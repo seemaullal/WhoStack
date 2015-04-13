@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.10.2",
+    "connect-redis": "^2.2.0",
     "cookie-parser": "~1.3.3",
     "debug": "~2.1.1",
     "express": "~4.11.1",
@@ -18,6 +19,7 @@
     "passport": "^0.2.1",
     "passport-oauth": "^1.0.0",
     "passport-slack": "0.0.1",
+    "redis": "^0.12.1",
     "request": "^2.53.0",
     "serve-favicon": "~2.2.0"
   }
