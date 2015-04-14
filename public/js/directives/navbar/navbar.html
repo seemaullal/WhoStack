@@ -14,8 +14,8 @@
 		</div>
 		<div class="navbar-collapse collapse move-me">
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-show="currentUser.user"><a href="/login">You are logged in as {{currentUser.user.real_name}}. Click here to login as someone else.</a></li>
-				<li ng-show="!currentUser.user"><a href="/login">Log In</a></li>
+				<li ng-show="currentUser && currentUser.user"><a href="/login">You are logged in as {{currentUser.user.real_name}}. Click here to login as someone else.</a></li>
+				<li ng-show="!currentUser || !currentUser.user"><a href="/login">Log In</a></li>
 			</ul>
 		</div>
 	</div>
