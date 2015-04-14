@@ -9,32 +9,13 @@
 		<script src ="js/directives/groupselector/groupselector.js"></script>
 		<script src ="js/directives/gameinterface/gameinterface.js"></script>
 		<script src ="js/directives/whogame/whogame.js"></script>
+		<script src ="js/directives/navbar/navbar.js"></script>
 		<script src="js/factories/GroupFactory.js"></script>
 		<script src="js/factories/MemberFactory.js"></script>
 		<script src="js/filters/realphoto.js"></script>
 	</head>
 	<body ng-app="WhoStack" ng-controller="MainController">
-		<div class="navbar navbar-default navbar-fixed-top move-me ">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/">WhoStack</a>
-					<ul class="nav navbar-nav">
-						<li><a href="/">Learn</a></li>
-						<li><a href="/">Play</a></li>
-					</ul>
-				</div>
-				<div class="navbar-collapse collapse move-me">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/login">You are logged in as {{currentUser.user.real_name}}. Click here to login as someone else.</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<navbar></navbar>
 		<div id="wrap">
 			<div id="main" class="container clear-top">
 				<div class="row">
