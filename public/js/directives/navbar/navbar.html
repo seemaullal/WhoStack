@@ -1,0 +1,22 @@
+<div class="navbar navbar-default navbar-fixed-top move-me ">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">WhoStack</a>
+			<ul class="nav navbar-nav" ng-show='currentUser && currentUser.user'>
+				<li><a href="/">Learn</a></li>
+				<li><a href="/">Play</a></li>
+			</ul>
+		</div>
+		<div class="navbar-collapse collapse move-me">
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-show="currentUser && currentUser.user"><a href="/login">You are logged in as {{currentUser.user.real_name}}. Click here to login as someone else.</a></li>
+				<li ng-show="!currentUser || !currentUser.user"><a href="/login">Log In</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
