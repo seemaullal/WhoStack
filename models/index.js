@@ -9,7 +9,6 @@ var userSchema = new mongoose.Schema({
 	// lastName: {type: String, required: true},
 	// // img: { data: Buffer, contentType: String }, //user adds their own image
 	// imageUrl: {type: String}, //only required if they are uploading from an outside API
-	// gender: String,
 	// githubUsername: String
 	UserId: String,
 	Token: String
