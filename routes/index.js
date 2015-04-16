@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 	}
 	else {
 		console.log('we look for index.html')
-		res.sendFile('./index.html');
+		res.sendFile('./index.html', {root: './'});
 	}
 		
 });
