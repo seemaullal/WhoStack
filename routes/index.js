@@ -7,20 +7,26 @@ var models = require("../models/index");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	if (req.session.token)
-		res.redirect('/game');
-	else
-		res.sendFile('./index.html', {root: './'});
+	console.log("trying to get the homepage")
+	if (req.session.token){
+		console.log("this shouldn't happen I assume?")
+		res.redirect('/review');
+	}
+	else {
+		console.log('we look for index.html')
+		res.sendFile('./index.html');
+	}
+		
 });
 
 var token;
-router.get('/game', function(req, res, next) {
-	if (req.session.token) {
-		console.log('already had token',req.session.token);
-		res.sendFile('./game.html', {root: './'});
-	}
-	else res.redirect('/login');
-});
+// router.get('/game', function(req, res, next) {
+// 	if (req.session.token) {
+// 		console.log('already had token',req.session.token);
+// 		res.sendFile('./game.html', {root: './'});
+// 	}
+// 	else res.redirect('/login');
+// });
 
 router.get('/auth' , function(req,res,next) {
 	var sesh = req.session;
@@ -40,7 +46,7 @@ router.get('/auth' , function(req,res,next) {
 					var user_id = body.user_id;
 					sesh.user_id = user_id;
 					sesh.save();
-					res.redirect('/game');
+					res.redirect('/review');
 					// models.User.findOne({UserId: user_id}, function(err, user){
 					// 	if (err) console.log(err);
 					// 	// find an existing user from the database
