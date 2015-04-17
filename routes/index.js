@@ -7,15 +7,13 @@ var models = require("../models/index");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	console.log("trying to get the homepage")
-	if (req.session.token){
-		console.log("this shouldn't happen I assume?")
-		res.redirect('/review');
-	}
-	else {
-		console.log('we look for index.html')
+	// if (req.session.token){
+	// 	console.log("this shouldn't happen I assume?")
+	// 	res.redirect('/review');
+	// }
+	// else {
 		res.sendFile('./index.html', {root: './'});
-	}
+	// }
 		
 });
 
