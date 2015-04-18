@@ -7,6 +7,11 @@ var app = angular.module("WhoStack", ['ui.router']);
 //     $urlRouterProvider.otherwise('/');
 // });
 
+app.config(["$locationProvider", function($locationProvider) {
+  $locationProvider.html5Mode(true); //don't include the '#' in ui-view URLs
+}]);
+
+
 app.controller("MainController", function ($scope, GroupFactory, MemberFactory){
 	console.log("maincontroller is loading")
 	GroupFactory.getGroups().then(function(groups){

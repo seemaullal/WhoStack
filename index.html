@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="/"></base>
 		<title>WhoStack</title>
 		<link rel='stylesheet' href="bootstrap/dist/css/bootstrap.css">
 		<link rel='stylesheet' href="stylesheets/style.css">
@@ -22,12 +23,12 @@
 		<script src="js/states/review/review.js"></script>
 	</head>
 	<body ng-app="WhoStack" ng-controller="MainController">
-		<navbar></navbar>
-		<div id="wrap">
-			<div id="main" class="container clear-top">
-		<!-- <div ui-view></div> -->
+	<navbar></navbar>
+	<div id="wrap">
+		<div id="main" class="container clear-top">
+			<div ui-view></div>
 		</div>
-		</div>
-		<footerdirective></footerdirective>
-	</body>
+	</div>
+<footerdirective></footerdirective>
+</body>
 </html>
