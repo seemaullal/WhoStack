@@ -38,4 +38,9 @@ app.controller('ReviewCtrl', function ($scope, GroupFactory, MemberFactory) {
       });
     });
   };
+  $scope.photoClicked = function(member, $index) {
+    $scope.selectedIndex = $index;
+    $scope.name = member.real_name;
+  };
+
 });
