@@ -42,7 +42,12 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-app.use(require('./routes'));
+app.use('/api',require('./routes'));
+
+
+app.get('/*', function(req, res, next) {
+    res.sendFile('./index.html', {root: './'});     
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

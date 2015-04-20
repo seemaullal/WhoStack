@@ -5,19 +5,7 @@ var config = require("../config");
 var request = require('request');
 var models = require("../models/index");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-	console.log("trying to get the homepage")
-	if (req.session.token){
-		console.log("this shouldn't happen I assume?")
-		res.redirect('/review');
-	}
-	else {
-		console.log('we look for index.html')
-		res.sendFile('./index.html', {root: './'});
-	}
-		
-});
+
 
 var token;
 // router.get('/game', function(req, res, next) {
