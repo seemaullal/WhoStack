@@ -11,7 +11,7 @@ app.config(function ($stateProvider) {
   		}
   	},
     url: '/',
-    templateUrl: 'js/states/login/login.html', 
+    templateUrl: 'js/states/login/login.html',
     controller: 'LoginCtrl'
   });
 });
