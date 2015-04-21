@@ -42,5 +42,4 @@ app.controller('ReviewCtrl', function ($scope, GroupFactory, MemberFactory) {
     $scope.selectedIndex = $index;
     $scope.name = member.real_name;
   };
-
 });
