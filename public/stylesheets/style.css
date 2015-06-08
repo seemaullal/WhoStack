@@ -12,14 +12,14 @@ body {
  
 #main {
     overflow:auto;
-    padding-bottom:60px; /* this needs to be bigger than footer height*/
+    padding-bottom:80px; /* this needs to be bigger than footer height*/
     margin-bottom: 20px;
 }
  
 .footer {
     position: relative;
-    margin-top: -75px; /* negative value of footer height */
-    height: 55px;
+    margin-top: -85px; /* negative value of footer height */
+    height: 65px;
     clear:both;
     padding-top:20px;
     background-color: #212121;

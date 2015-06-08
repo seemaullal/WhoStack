@@ -1,0 +1,10 @@
+<groupselector></groupselector>
+<div class="container">
+<img
+height="100" width="100"
+ng-repeat="member in members"
+ng-class = "{'clicked-photo' : $index == selectedIndex }"
+ng-src="{{ member.user.profile.image_192 }}"
+ng-click = "photoClicked(member.user.profile,$index)"
+/> <!-- NO FILTER FOR NOW -->
+</div>

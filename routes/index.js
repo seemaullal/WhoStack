@@ -5,29 +5,23 @@ var config = require("../config");
 var request = require('request');
 var models = require("../models/index");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-	if (req.session.token)
-		res.redirect('/game');
-	else
-		res.sendFile('./index.html', {root: './'});
-});
+
 
 var token;
-router.get('/game', function(req, res, next) {
-	if (req.session.token) {
-		console.log('already had token',req.session.token);
-		res.sendFile('./game.html', {root: './'});
-	}
-	else res.redirect('/login');
-});
+// router.get('/game', function(req, res, next) {
+// 	if (req.session.token) {
+// 		console.log('already had token',req.session.token);
+// 		res.sendFile('./game.html', {root: './'});
+// 	}
+// 	else res.redirect('/login');
+// });
 
 router.get('/auth' , function(req,res,next) {
 	var sesh = req.session;
 	var url = 'https://slack.com/api/oauth.access';
 	var qs = config.slackSecrets;
 	qs.code = req.query.code;
-	qs.redirect_uri = 'http://127.0.0.1:3000/auth'; //refers to the original callback URI (for authentication) https://api.slack.com/docs/oauth
+	qs.redirect_uri = 'http://127.0.0.1:3000/api/auth'; //refers to the original callback URI (for authentication) https://api.slack.com/docs/oauth
 	request({url: url, qs: qs }, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var body = JSON.parse(body);
@@ -40,7 +34,7 @@ router.get('/auth' , function(req,res,next) {
 					var user_id = body.user_id;
 					sesh.user_id = user_id;
 					sesh.save();
-					res.redirect('/game');
+					res.redirect('/review');
 					// models.User.findOne({UserId: user_id}, function(err, user){
 					// 	if (err) console.log(err);
 					// 	// find an existing user from the database
@@ -60,7 +54,7 @@ router.get('/auth' , function(req,res,next) {
 });
 
 router.get('/login' , function(req, res, next) {
-	req.redirect_uri = 'http://127.0.0.1:3000/auth';
+	req.redirect_uri = 'http://127.0.0.1:3000/api/auth';
 	// req.redirect_uri = 'https://whostack.herokuapp.com/game';
 	res.redirect('https://slack.com/oauth/authorize?client_id='+ config.slackSecrets.client_id + '&redirect_uri=' +  req.redirect_uri + '&state=' + config.slackSecrets.state);
 

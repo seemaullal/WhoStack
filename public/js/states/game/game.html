@@ -1,0 +1,17 @@
+<groupselector></groupselector>
+<h3 ng-if="name">You have clicked {{name}}!</h3>
+<button ng-click="start()">START</button>
+<h4>{{message}}</h4>
+<h4>{{pointsFromGame}} Points from Game</h4>
+<h4>{{guesses}} guesses left</h4>
+<h4>Can you find {{randomPerson.user.profile.real_name}}?</h4>
+
+<div class="container">
+<img
+height="100" width="100"
+ng-repeat="member in members"
+ng-class = "{'clicked-photo' : $index == selectedIndex }"
+ng-src="{{ member.user.profile.image_192 }}"
+ng-click = "photoClicked(member.user.profile,$index)"
+/> <!-- NO FILTER FOR NOW -->
+</div>
