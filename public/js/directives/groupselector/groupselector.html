@@ -1,5 +1,6 @@
 <div class='container'>
-	<h1> Select a group!</h1>
+	<h1 ng-hide="selectedgroup"> Select a group!</h1>
+	<h2 ng-show="selectedgroup">Click on a face to learn someone's name!</h2>
 	<select ng-change="getMembers(selectedgroup)" ng-model="selectedgroup" class="custom-select" ng-options="group.name for group in groups">
 		<option></option>
 	</select>
